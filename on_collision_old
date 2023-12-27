@@ -1,0 +1,38 @@
+function on_collision(){
+	var _tx = x;
+	var _ty = y;
+	if(xprevious != _tx){
+		show_debug_message("xprevious", xprevious);
+		show_debug_message("x", _tx);
+
+	}
+	
+	if(yprevious != _ty){
+		show_debug_message("yprevious", yprevious);
+		show_debug_message("y", _ty);
+	}
+
+	
+	x = xprevious;
+	y = yprevious;
+	
+		
+	var _disX = abs(_tx - x);
+	var _disY = abs(_ty - y);
+	
+	repeat(_disX){
+		if !tile_meeting(x+sign(_tx - x), y, "Tiles_1"){
+			x += sign(_tx - x);	
+			show_debug_message("X: {0}", x);
+		}
+		//if !place_meeting(x+sign(_tx - x), y, obj_wall) x += sign(_tx - x);
+	}
+	repeat(_disY){
+		if !tile_meeting(x, y+sign(_ty - y), "Tiles_1"){
+			y += sign(_ty - y);	
+			show_debug_message("Y: {0}", y);
+		}
+
+		//if !place_meeting(x, y+sign(_ty - y), obj_wall) y += sign(_ty - y);	
+	}
+}
